@@ -1,0 +1,20 @@
+	  _________.__                 __      _____                 
+	 /   _____/|  | _____    ____ |  | __ /     \ _____  ______  
+	 \_____  \ |  | \__  \ _/ ___\|  |/ //  \ /  \\__  \ \____ \ 
+	 /        \|  |__/ __ \\  \___|    </    Y    \/ __ \|  |_> >
+	/_______  /|____(____  /\___  >__|_ \____|__  (____  /   __/ 
+	        \/           \/     \/     \/       \/     \/|__|   
+
+				-Slackmap-
+
+An automatic Nmap scanning script for scheduled reports to Slack.
+
+Dependencies: nmap, xsltproc
+
+How it works: Slackmap (nmapscan.sh) takes an nmap scan and creates both 
+a difference text file, based on a previous scan (if present) using 
+ndiff and a pair of full scan .xml files. The ndiff text file is piped 
+via 'cat' to 'slacktee.sh' to create a summary post on Slack. The full 
+scan .xml is converted to a .html using 'xsltproc.' The .html is first 
+piped to 'grep' to fixed a .html formatting issue then piped to 
+slacktree.sh to be uploaded to Slack.
